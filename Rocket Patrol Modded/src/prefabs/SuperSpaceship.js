@@ -3,7 +3,7 @@ class SuperSpaceship extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture, frame, pointValue) {
         super(scene, x, y, texture, frame)
         scene.add.existing(this)        //add to existing scene
-        this.points = pointValue        //store pointval
+        this.points = 50        //store pointval
         this.moveSpeed = game.settings.superspaceshipspeed              //spaceship speed by pixel
         this.reset()
     }
@@ -26,6 +26,11 @@ class SuperSpaceship extends Phaser.GameObjects.Sprite {
         // Set the initial x position based on the movement direction
         this.x = (this.moveDirection === 1) ? 0 - this.width : game.config.width;
 
+        const rocketHeight = 15
+        this.y = Phaser.Math.RND.between(
+            borderUISize * 3 + borderPadding, 
+            game.config.height - borderUISize - borderPadding - rocketHeight
+        )
         //this.y = Phaser.Math.RND.between(borderUISize * 3 + borderPadding, game.config.height - borderUISize - borderPadding);
 
         // Set the spaceship speed
